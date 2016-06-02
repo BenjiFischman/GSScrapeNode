@@ -5,7 +5,13 @@ function my_favorite_function(){
             var titles = [];
             for (var i = 0; i < headerTags.length; i++) {
                 var aTag = headerTags[i].getElementsByTagName('a');
-                titles.push(aTag[0].textContent);
+                if (aTag.length === 0) { 
+                  titles.push(headerTags[i].textContent);
+                  continue;
+                }
+                else { 
+                      titles.push(aTag[0].textContent);}
+                
             }
             // send titles back to background for posting
             chrome.runtime.sendMessage({'message': 'post_titles', 'titles': titles});

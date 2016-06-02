@@ -10,28 +10,19 @@ chrome.runtime.onMessage.addListener(
 				dataType:'json',
 				url: 'http://localhost:8080/write-titles'
 			});
+			return true;
 		}
-	}
-);
-	
-			
-chrome.runtime.onMessage.addListener(
-	//returns next URL for page redirect
-	function(request, sender , sendResponse) {
-		if (request.message === "initiate_redirect") {
-			chrome.tabs.getSelected(null, function(tab) {
-				var activeTab = tab.id;
+		else if (request.message === "initiate_redirect") {
+				chrome.tabs.getSelected(null, function(tab) {
+				 var activeTab = tab.id;
 				 chrome.tabs.sendMessage(activeTab, {'message': 'go_for_redirect', 'next_page': request.next_page});
 			});
-		return true;	
-	}
-	return true;
-			
-			}
+			return true;
+		}
 		
-	
-	
+	}
 );
+	
 
 
 
