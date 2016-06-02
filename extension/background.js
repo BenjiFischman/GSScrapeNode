@@ -1,13 +1,5 @@
-// Called when the user clicks on the browser action.
-chrome.browserAction.onClicked.addListener(function() {
-    // Send a message to the active tab
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-		var activeTab = tabs[0];
-		chrome.tabs.sendMessage(activeTab.id, {"message": "get_titles"});
-	});
-});
-
 chrome.runtime.onMessage.addListener(
+	//
 	function(request, sender, sendResponse) {
 		if (request.message === "post_titles") {
 			// post request.titles to localhost
@@ -21,5 +13,25 @@ chrome.runtime.onMessage.addListener(
 		}
 	}
 );
+	
+			
+chrome.runtime.onMessage.addListener(
+	//returns next URL for page redirect
+	function(request, sender , sendResponse) {
+		if (request.message === "initiate_redirect") {
+			chrome.tabs.getSelected(null, function(tab) {
+				var activeTab = tab.id;
+				 chrome.tabs.sendMessage(activeTab, {'message': 'go_for_redirect', 'next_page': request.next_page});
+			});
+		return true;	
+	}
+	return true;
+			
+			}
+		
+	
+	
+);
+
 
 
