@@ -1,8 +1,8 @@
-#GSScrapeNode
-###A web scraper for Google Scholar utilizing Node.js
+# GSScrapeNode
+### A web scraper for Google Scholar utilizing Node.js
 
 <br><br>
-####Introduction
+#### Introduction
 A methodology to grab all titles that reference a seed article was
 necessary for a research project, but Google does not provide a way to
 do this. Thus, GSScrape was born with the goal of automatically scraping
@@ -18,7 +18,7 @@ what generated a need for a webserver. In a nutshell, GSScrapeNode will
 fetch the titles from a Google Scholar results page and post them to
 a local webserver. The webserver will then write the titles to a file.
 <br><br>
-####Installation
+#### Installation
 <ol>
 	<li>You'll need to be running linux with both npm and nodejs
 	installed. Both are available using <code>apt-get</code>.
